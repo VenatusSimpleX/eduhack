@@ -157,7 +157,7 @@ function Join() {
   return (
     <div id="join">
       <div id="form-accordian">
-        <h1>Join Now</h1>
+        <h1>Register Now</h1>
         {/* form here, action to payment gateway */}
         <form action="#" id="form">
           {/* <!-- group form --> */}

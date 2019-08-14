@@ -32,9 +32,10 @@ function Content() {
             Technology and Entrepreneurship
           </li>
           <li>
-            <span>Date</span> : 7th-8th September 2019 (Saturday
+            <span>Date</span>: Coming soon in October
+            {/* <span>Date</span> : 7th-8th September 2019 (Saturday
             to
-            Sunday)
+            Sunday) */}
           </li>
           <li>
             <span>Venue</span> : Sunway iLabs, Menara Sunway

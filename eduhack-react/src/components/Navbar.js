@@ -16,7 +16,7 @@ function Navbar() {
         <a href="#!" className="closebtn" onClick={closeNav}>&times;</a>
         <a href="#header" onClick={closeNav}>Home</a>
         <a href="#content" onClick={closeNav}>Event Details</a>
-        <a href="#join" onClick={closeNav} id="join-button">Join</a>
+        <a href="#join" onClick={closeNav} id="join-button">Register</a>
       </div>
 
       <div id="nav">
@@ -27,13 +27,13 @@ function Navbar() {
         </div>
         <div id="nav-logo">
           <a href="#header">
-            <img src="assets/small_logo.svg" alt="EduHack Small Logo" />
+            <img src="assets/small-logo.png" alt="EduHack Small Logo" />
           </a>
         </div>
         <div id="nav-link">
           <a href="#header">Home</a>
           <a href="#content">Event Details</a>
-          <a href="#join" id="join-button">Join</a>
+          <a href="#join" id="join-button">Register</a>
         </div>
       </div>
     </div>
