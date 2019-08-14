@@ -1,7 +1,11 @@
 import React, { useGlobal } from 'reactn'
 import Participant from './Participant'
+import * as firebase from 'firebase/app'
+import 'firebase/firestore'
 
 function Join() {
+  const [data, setData] = useGlobal()
+
   const [team, setTeam] = useGlobal("team")
   function handleOnChangeTeam(event) {
     setTeam(event.target.value)
@@ -54,6 +58,97 @@ function Join() {
     }
   }
 
+  function validateData() {
+    if(team.length === 0
+      || paymentMethod === 'select')
+      return false
+
+    for(let member of members) {
+      if(member.fullName.length === 0
+        || member.ic.length === 0
+        || member.gender === 'select'
+        || member.gender.length === 0
+        || member.mobile.length === 0
+        || member.email.length === 0
+        || member.university.length === 0
+        || member.programme.length === 0
+        || member.tShirtSize === 'select'
+        || member.tShirtSize.length === 0
+        || member.emergency.name.length === 0
+        || member.emergency.mobile.length === 0)
+        return false
+    }
+
+    return true
+  }
+
+  function handleOnSubmit() {
+    // Check if any fields are empty
+    if(validateData()) {
+      alert('All fields are required')
+      return
+    }
+
+    const db = firebase.firestore()
+    db.collection('eduhack_signup')
+      .add(data)
+      .then(() => {
+        setData({
+          team: "",
+          paymentMethod: "",
+          members: [
+            {
+              fullName: "",
+              ic: "",
+              gender: "",
+              mobile: "",
+              email: "",
+              university: "",
+              programme: "",
+              tShirtSize: "",
+              vegetarian: false,
+              emergency: {
+                name: "",
+                mobile: ""
+              }
+            },
+            {
+              fullName: "",
+              ic: "",
+              gender: "",
+              mobile: "",
+              email: "",
+              university: "",
+              programme: "",
+              tShirtSize: "",
+              vegetarian: false,
+              emergency: {
+                name: "",
+                mobile: ""
+              }
+            },
+            {
+              fullName: "",
+              ic: "",
+              gender: "",
+              mobile: "",
+              email: "",
+              university: "",
+              programme: "",
+              tShirtSize: "",
+              vegetarian: false,
+              emergency: {
+                name: "",
+                mobile: ""
+              }
+            }
+          ]
+        })
+        alert('Congratulations, you have successfully registered!')
+        window.location.reload()
+      })
+  }
+
   let participantList = []
   for(let i = 1; i <= members.length; i++) {
     participantList.push(<Participant key={i} onClick={toggleAccordian} memberNo={i}/>)
@@ -72,12 +167,12 @@ function Join() {
             <div>
               <label htmlFor="groupName">Group Name</label>
               <input type="text" name="groupName"
-                placeholder="Group Name" onChange={handleOnChangeTeam}/>
+                placeholder="Group Name" onChange={handleOnChangeTeam} value={team} />
             </div>
             <div>
               <label htmlFor="payment_method">Payment method</label>
-              <select name="payment_method" onChange={handleOnChangePaymentMethod}>
-                <option defaultValue>Select</option>
+              <select name="payment_method" onChange={handleOnChangePaymentMethod} value={paymentMethod}>
+                <option value="select" defaultValue>Select</option>
                 <option value="onlinePay">Online payment</option>
                 <option value="cash">Cash</option>
               </select>
@@ -87,7 +182,7 @@ function Join() {
         </form>
 
         <div id="plusParticipant" onClick={handleOnClickPlusParticipant}/>
-        <button id="submit-button">Submit</button>
+        <button id="submit-button" onClick={handleOnSubmit}>Submit</button>
         </div>
     </div>
   )

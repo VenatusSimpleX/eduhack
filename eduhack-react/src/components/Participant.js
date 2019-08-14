@@ -3,8 +3,6 @@ import React, { useGlobal } from 'reactn'
 function Participant(props) {
   const index = props.memberNo - 1
   const [members, setMembers] = useGlobal("members")
-  // const [member, setMember] = [...members][index]
-  console.log(members)
 
   function handleOnChange(event) {
     let newMembers = [...members]
@@ -43,6 +41,8 @@ function Participant(props) {
       case 'par_emer_contact_name':
         newMembers[index].emergency.name = event.target.value
         break
+      default:
+        console.log("This isn't supposed to happen.. But if you see this, talk to us about joining our committee, because we need people like you!")
     }
 
     setMembers(newMembers)
@@ -57,16 +57,16 @@ function Participant(props) {
         {/* <!-- look at only this div uwu, the next few are just copypasted --> */}
         <div>
           <label htmlFor="par_name">Full Name</label>
-          <input type="text" name="par_name" onChange={handleOnChange} />
+          <input type="text" name="par_name" onChange={handleOnChange} value={members[index].fullName} />
         </div>
         <div>
           <label htmlFor="par_ic">IC/Passport Number</label>
-          <input type="text" name="par_ic" onChange={handleOnChange} />
+          <input type="text" name="par_ic" onChange={handleOnChange} value={members[index].ic} />
         </div>
         <div>
           <label htmlFor="par_gender">Gender</label>
-          <select name="par_gender" onChange={handleOnChange}>
-            <option defaultValue>Select</option>
+          <select name="par_gender" onChange={handleOnChange} value={members[index].gender}>
+            <option value="select" defaultValue>Select</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="pref_not">Prefer not to say</option>
@@ -74,24 +74,24 @@ function Participant(props) {
         </div>
         <div>
           <label htmlFor="par_mobile">Mobile phone</label>
-          <input type="text" name="par_mobilephone" onChange={handleOnChange} />
+          <input type="text" name="par_mobilephone" onChange={handleOnChange} value={members[index].mobile} />
         </div>
         <div>
           <label htmlFor="par_email">Email</label>
-          <input type="email" name="par_email" onChange={handleOnChange} />
+          <input type="email" name="par_email" onChange={handleOnChange} value={members[index].email} />
         </div>
         <div>
           <label htmlFor="par_university">University</label>
-          <input type="text" name="par_university" onChange={handleOnChange} />
+          <input type="text" name="par_university" onChange={handleOnChange} value={members[index].university} />
         </div>
         <div>
           <label htmlFor="par_programme">Programme</label>
-          <input type="text" name="par_programme" onChange={handleOnChange} />
+          <input type="text" name="par_programme" onChange={handleOnChange} value={members[index].programme} />
         </div>
         <div>
           <label htmlFor="par_tshirt">T-shirt size</label>
-          <select name="par_tshirt" onChange={handleOnChange}>
-            <option defaultValue>Select</option>
+          <select name="par_tshirt" onChange={handleOnChange} value={members[index].tShirtSize}>
+            <option value="select" defaultValue>Select</option>
             <option value="s">S</option>
             <option value="m">M</option>
             <option value="l">L</option>
@@ -100,21 +100,24 @@ function Participant(props) {
         </div>
         <div>
           <label htmlFor="par_vege">Vegetarian</label>
-          <input type="checkbox" name="par_vege"
+          <input
+            type="checkbox"
+            name="par_vege"
             id="vege"
-            onChange={handleOnChange} />
+            onChange={handleOnChange}
+          />
         </div>
         <div>
           <label htmlFor="par_emer_contact">Emergency contact
             number</label>
-          <input type="text" name="par_emer_contact" onChange={handleOnChange} />
+          <input type="text" name="par_emer_contact" onChange={handleOnChange} value={members[index].emergency.mobile} />
         </div>
         <div>
           <label htmlFor="par_emer_contact_name">Emergency
             contact
             name</label>
           <input type="text"
-            name="par_emer_contact_name" onChange={handleOnChange} />
+            name="par_emer_contact_name" onChange={handleOnChange} value={members[index].emergency.name} />
         </div>
       </div>
     </div>
