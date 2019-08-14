@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Header from './components/Header'
 import Content from './components/Content'
 import Join from './components/Join'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Header />
       <Content />
       <Join />
+      <Footer />
     </div>
   )
 }
