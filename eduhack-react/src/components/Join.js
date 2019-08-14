@@ -84,7 +84,7 @@ function Join() {
 
   function handleOnSubmit() {
     // Check if any fields are empty
-    if(validateData()) {
+    if(!validateData()) {
       alert('All fields are required')
       return
     }
