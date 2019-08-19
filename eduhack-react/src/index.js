@@ -1,7 +1,7 @@
 import React, { setGlobal } from 'reactn'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App from './App'
+import HttpsApp from './HttpsApp'
 import * as firebase from 'firebase/app'
 
 require('dotenv').config({path: '../.env'})
@@ -70,4 +70,4 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig)
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<HttpsApp />, document.getElementById('root'));
